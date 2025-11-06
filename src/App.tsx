@@ -24,7 +24,7 @@ export default function App() {
     <div className="app">
       {/* Header léger : nom + (la page place le badge de rang) */}
       <header className="app-header">
-        <h1 style={{ margin: 0, color: 'var(--accent)' }}>VTC Bonus</h1>
+        <h1 style={{ margin: 0, color: 'var(--accent)' }}>LMDCVTC</h1>
         <div style={{ fontWeight: 600 }}>{displayName}</div>
       </header>
 
