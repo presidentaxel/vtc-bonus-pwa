@@ -1,35 +1,40 @@
 import React from 'react';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-
+import Profile from './pages/Profile';
+import BottomTabBar from './components/BottomTabBar';
+import { loadUser } from './lib/storage';
 
 function useHashRoute() {
-const [route, setRoute] = React.useState(window.location.hash.replace('#', '') || '/');
-React.useEffect(() => {
-const onHash = () => setRoute(window.location.hash.replace('#', '') || '/');
-window.addEventListener('hashchange', onHash);
-return () => window.removeEventListener('hashchange', onHash);
-}, []);
-return [route, (r: string) => (window.location.hash = r)] as const;
+  const [route, setRoute] = React.useState(window.location.hash.replace('#', '') || '/');
+  React.useEffect(() => {
+    const onHash = () => setRoute(window.location.hash.replace('#', '') || '/');
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  return [route] as const;
 }
 
-
 export default function App() {
-    const [route, nav] = useHashRoute();
-    return (
-        <div className="app">
-            <header className="app-header">
-            <h1>VTC Bonus</h1>
-            <nav>
-                <button onClick={() => nav('/')}>Accueil</button>
-                <button onClick={() => nav('/dashboard')}>Dashboard</button>
-            </nav>
-            </header>
-            <main>
-                {route === '/' && <Home />}
-                {route === '/dashboard' && <Dashboard />}
-            </main>
-            <footer className="app-footer">© {new Date().getFullYear()} VTC Bonus</footer>
-        </div>
-    );
+  const [route] = useHashRoute();
+  const user = loadUser();
+  const displayName = user.firstName || user.lastName ? `${user.firstName} ${user.lastName}`.trim() : 'Invité';
+
+  return (
+    <div className="app">
+      {/* Header léger : nom + (la page place le badge de rang) */}
+      <header className="app-header">
+        <h1 style={{ margin: 0, color: 'var(--accent)' }}>VTC Bonus</h1>
+        <div style={{ fontWeight: 600 }}>{displayName}</div>
+      </header>
+
+      <main>
+        {route === '/' && <Home />}
+        {route === '/dashboard' && <Dashboard />}
+        {route === '/profile' && <Profile />}
+      </main>
+
+      <BottomTabBar />
+    </div>
+  );
 }
