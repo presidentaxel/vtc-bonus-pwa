@@ -91,7 +91,6 @@ export default function Home() {
 
   const trailingHistory = history.slice(-12);
   const bonusActuel = countNow * statsPrev.perRide;
-  const xpTotale = countNow * XP_PAR_COURSE;
 
   const leaderboard = React.useMemo(() => {
     const baseLeaders = [
@@ -128,24 +127,18 @@ export default function Home() {
         <div className="hero-card__body">
           <div className="hero-copy">
             <div className="hero-bonus">
-              <div>
-                <span>Bonus Bolt en {thisMonth}</span>
-                <strong>+{bonusActuel} €</strong>
-              </div>
-              <div>
-                <span>XP cumulée</span>
-                <strong>{xpTotale} XP</strong>
-              </div>
+              <span className="hero-bonus__label">Bonus Bolt en {thisMonth}</span>
+              <strong className="hero-bonus__value">+{bonusActuel} €</strong>
+              <span className="hero-bonus__hint">Calculé grâce à ton badge {statsPrev.rank} obtenu en {lastMonth}</span>
             </div>
             <p className="hero-copy__hello">Bonjour {displayName},</p>
             <h2 className="hero-copy__title">
               Ton badge {statsNow.rank} active le bonus Bolt de {nextMonth}
             </h2>
             <p className="hero-copy__subtitle">
-              Chaque course réalisée en {thisMonth} te rapporte déjà{' '}
-              <strong>+{statsPrev.perRide} €</strong> grâce à ton badge de {lastMonth} et{' '}
-              <strong>{XP_PAR_COURSE} XP</strong> pour grimper au classement. Conserve ce rythme
-              pour viser le badge supérieur en {nextMonth}.
+              Chaque course réalisée en {thisMonth} ajoute immédiatement{' '}
+              <strong>+{statsPrev.perRide} €</strong> à ta prime du mois. Garde ce rythme pour
+              décrocher un badge supérieur et booster ton bonus de {nextMonth}.
             </p>
             <div className="hero-next">
               {statsNow.next ? (
@@ -248,8 +241,6 @@ export default function Home() {
                 </span>
                 <div className="leaderboard__chips">
                   <span>{entry.xp} XP</span>
-                  <span>{entry.courses} courses</span>
-                  <span>{entry.delta}</span>
                 </div>
               </div>
             ))}
