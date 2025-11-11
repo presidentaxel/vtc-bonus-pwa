@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiSettings, FiX } from 'react-icons/fi';
+import { FiEdit3, FiX } from 'react-icons/fi';
 
 export default function FloatingBubble({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
@@ -10,16 +10,16 @@ export default function FloatingBubble({ children }: { children: React.ReactNode
   }, []);
   return (
     <>
-      <button className="fab" aria-label="Paramètres"
-        onClick={() => setOpen(true)} title="Paramètres">
-        <FiSettings size={22} />
+      <button className="fab" aria-label="Ajuster les compteurs"
+        onClick={() => setOpen(true)} title="Ajuster les compteurs">
+        <FiEdit3 size={22} />
       </button>
 
       {open && (
         <div className="overlay" onClick={() => setOpen(false)}>
           <div className="sheet" onClick={(e) => e.stopPropagation()}>
             <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:8}}>
-              <b>Paramètres de la démo</b>
+              <b>Modifie ton compteur</b>
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Fermer"

@@ -22,10 +22,12 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* Header léger : nom + (la page place le badge de rang) */}
       <header className="app-header">
-        <h1 style={{ margin: 0, color: 'var(--accent)' }}>LMDCVTC</h1>
-        <div style={{ fontWeight: 600 }}>{displayName}</div>
+        <div className="app-header__brand">
+          <h1>Bolt Partenaires</h1>
+          <span>Programme bonus LMDC</span>
+        </div>
+        <div className="app-header__user">{displayName}</div>
       </header>
 
       <main>

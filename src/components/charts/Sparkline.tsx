@@ -14,7 +14,7 @@ const scaleY = (v: number) => h - pad - (maxY === minY ? 0 : ((v - minY) / (maxY
 const path = xs.map((x, i) => `${i === 0 ? 'M' : 'L'} ${pad + x * dx} ${scaleY(ys[i])}`).join(' ');
 return (
 <svg width="100%" viewBox={`0 0 ${w} ${h}`} aria-label="Historique des courses">
-<path d={path} fill="none" stroke="currentColor" stroke-width="2" opacity="0.9" />
+<path d={path} fill="none" stroke="currentColor" strokeWidth="2" opacity="0.9" />
 </svg>
 );
 }

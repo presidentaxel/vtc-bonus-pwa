@@ -33,8 +33,11 @@ export default function Profile() {
   return (
     <div className="grid">
       <div className="card">
-        <h2>Profil local (démo)</h2>
-        <form onSubmit={onSave} className="grid" style={{ gap: 8 }}>
+        <div className="section-heading">
+          <h3>Profil local</h3>
+          <span className="chip chip--ghost">Démo</span>
+        </div>
+        <form onSubmit={onSave} className="grid" style={{ gap: 12 }}>
           <div>
             <div className="label">Prénom</div>
             <input className="input" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Ton prénom" />
@@ -44,14 +47,14 @@ export default function Profile() {
             <input className="input" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Ton nom" />
           </div>
 
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ display: 'flex', gap: 12 }}>
             <button type="submit" className="btn">Enregistrer</button>
-            <button type="button" onClick={onClear} style={{ background: '#ef4444', color: '#fff', borderRadius: 10, padding: '12px 14px', border: 'none' }}>
-              Supprimer
+            <button type="button" onClick={onClear} className="btn btn-danger">
+              Réinitialiser
             </button>
           </div>
 
-          {saved && <div className="sub">Profil enregistré ✔️</div>}
+          {saved && <div className="chip chip--accent" style={{ justifyContent: 'center' }}>Profil enregistré</div>}
         </form>
 
         <div style={{ marginTop: 12 }} className="sub">
